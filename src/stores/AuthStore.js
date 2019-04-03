@@ -1,6 +1,6 @@
 // @flow
 
-import { observable, decorate, action, inject } from 'mobx'
+import { observable, decorate, action } from 'mobx'
 
 import { firebaseAuth } from '../utils/firebase'
 

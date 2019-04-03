@@ -14,7 +14,7 @@ type AppProps = {
 
 class App extends Component<AppProps> {
   render() {
-    console.log('props ', this.props);
+    console.log('props ', this.props)
     const { authStore } = this.props
     const { isLoading } = authStore
 
@@ -25,4 +25,4 @@ class App extends Component<AppProps> {
 export default compose(
   inject('authStore'),
   observer
-  )(App)
+)(App)

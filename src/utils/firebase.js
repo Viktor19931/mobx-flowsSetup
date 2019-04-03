@@ -1,28 +1,27 @@
-
 // @flow
 
 import * as firebase from 'firebase'
 
 const config = {
-    apiKey: "AIzaSyBy_OrlPpC6YkA3YGsnHFDXE3E6r5lAxso",
-    authDomain: "mobx-8b252.firebaseapp.com",
-    databaseURL: "https://mobx-8b252.firebaseio.com",
-    projectId: "mobx-8b252",
-    storageBucket: "mobx-8b252.appspot.com",
-    messagingSenderId: "766358375819"
+  apiKey: 'AIzaSyBy_OrlPpC6YkA3YGsnHFDXE3E6r5lAxso',
+  authDomain: 'mobx-8b252.firebaseapp.com',
+  databaseURL: 'https://mobx-8b252.firebaseio.com',
+  projectId: 'mobx-8b252',
+  storageBucket: 'mobx-8b252.appspot.com',
+  messagingSenderId: '766358375819',
 }
 
 firebase.initializeApp(config)
 
-export const ref = firebase.database().ref();
-export const firebaseAuth = firebase.auth;
+export const ref = firebase.database().ref()
+export const firebaseAuth = firebase.auth
 
 export const auth = (email: string, pw: string) =>
-    firebaseAuth().createUserWithEmailAndPassword(email, pw)
-        // .then(saveUser)
+  firebaseAuth().createUserWithEmailAndPassword(email, pw)
+// .then(saveUser)
 
 export const login = (email: string, pw: string) =>
-    firebaseAuth().signInWithEmailAndPassword(email, pw)
+  firebaseAuth().signInWithEmailAndPassword(email, pw)
 
-    // export const logout = () => 
-    // firebaseAuth().logout
+// export const logout = () =>
+// firebaseAuth().logout

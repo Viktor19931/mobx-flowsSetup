@@ -14,11 +14,9 @@ type AppProps = {
 
 class App extends Component<AppProps> {
   render() {
-    console.log('props ', this.props)
-    const { authStore } = this.props
-    const { isLoading } = authStore
+    const { isLoading } = this.props.authStore
 
-    return isLoading ? <Loader /> : routes(authStore)
+    return isLoading ? <Loader /> : routes()
   }
 }
 

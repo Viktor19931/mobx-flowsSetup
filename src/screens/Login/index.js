@@ -9,7 +9,7 @@ import { login } from '../../utils/firebase'
 
 type LoginProps = {
   history: any,
-  store: AuthStore,
+  authStore: AuthStore,
 }
 
 type LoginState = {
@@ -31,17 +31,17 @@ class Login extends Component<LoginProps, LoginState> {
   }
 
   handleSummit = () => {
-    const { history, store } = this.props
-    login('dffds', 'fefe')
+    const { history, authStore } = this.props
+    login(this.state.email, this.state.pass)
       .then(() => {
         history.push('/home')
-        store.firebaseCheckAuth()
+        authStore.firebaseCheckAuth()
       })
-      .catch(error => store.logError(error.message))
+      .catch(error => authStore.logError(error.message))
   }
 
   render() {
-    const { errorMsg } = this.props.store
+    const { errorMsg } = this.props.authStore
     return (
       <div>
         <input

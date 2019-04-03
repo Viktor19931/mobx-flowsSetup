@@ -3,11 +3,10 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 
-import AuthStore from './stores/AuthStore'
 import Home from './screens/Home'
 import Login from './screens/Login'
 
-const routes = (store: AuthStore) => (
+const routes = () => (
   <Switch>
     <Route
       exact
@@ -23,7 +22,7 @@ const routes = (store: AuthStore) => (
     <Route
       exact
       path="/"
-      render={rp => <Login {...rp} store={store} />}
+      render={rp => <Login {...rp} />}
     />
   </Switch>
 )

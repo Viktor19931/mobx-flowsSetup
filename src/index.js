@@ -1,10 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+// @flow
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from "mobx-react"
+
+import App from "./App";
+import AuthStore from "./stores/AuthStore"
+import * as serviceWorker from "./serviceWorker";
+
+const authStore = new AuthStore()
+const stores = {
+    authStore
+}
+
+const Root = () =>
+    <Provider {...stores}>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
+    </Provider>
+
+const rootElement = document.getElementById("root")
+
+if (rootElement !== null) ReactDOM.render(Root(), rootElement);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -2,7 +2,7 @@
 
 import { observable, decorate, action } from 'mobx'
 
-import { firebaseAuth } from '../utils/firebase'
+import { firebaseAuth, logout } from '../utils/firebase'
 
 class AuthStore {
   auth: boolean = false
@@ -27,12 +27,18 @@ class AuthStore {
   logError = (error: string) => {
     this.errorMsg = error
   }
+
+  logOut = () => logout()
 }
 
 decorate(AuthStore, {
+  auth: observable,
+  user: observable,
+  isLoading: observable,
   errorMsg: observable,
   firebaseCheckAuth: action,
   logError: action,
+  logOut: action,
 })
 
 export default AuthStore

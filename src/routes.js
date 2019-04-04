@@ -8,22 +8,11 @@ import Login from './screens/Login'
 
 const routes = () => (
   <Switch>
-    <Route
-      exact
-      path="/home"
-      render={rp => (
-        <Home
-          {...rp}
-          title="Home page"
-          description="Home page description"
-        />
-      )}
-    />
-    <Route
-      exact
-      path="/"
-      render={rp => <Login {...rp} />}
-    />
+    <Route exact path="/home" 
+      render={rp => <Home {...rp} 
+      title="Home page" 
+      description="Home page description" />} />
+    <Route exact path="/" component={Login} />
   </Switch>
 )
 

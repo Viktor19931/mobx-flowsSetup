@@ -1,38 +1,27 @@
 // @flow
 
-import React, { Component } from 'react'
+import React from 'react'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import { Formik } from 'formik'
 
 import AuthStore from '../../stores/AuthStore'
 import { login } from '../../utils/firebase'
+import { SubmitButton } from './style'
+import { loginSchema } from '../../utils/schemas'
 
 type LoginProps = {
   history: any,
   authStore: AuthStore,
 }
 
-type LoginState = {
-  email: string,
-  pass: string,
-}
-
-class Login extends Component<LoginProps, LoginState> {
-  state = {
-    email: '',
-    pass: '',
-  }
-
-  handleChange = (
-    event: SyntheticInputEvent<EventTarget>,
-    key: string
-  ) => {
-    this.setState({ [key]: event.target.value })
-  }
-
-  handleSummit = () => {
-    const { history, authStore } = this.props
-    login(this.state.email, this.state.pass)
+const Login = (props: LoginProps) => {
+  const handleSubmit = creds => {
+    const { history, authStore } = props
+    const { email, password } = creds
+    login(email, password)
       .then(() => {
         history.push('/home')
         authStore.firebaseCheckAuth()
@@ -40,31 +29,55 @@ class Login extends Component<LoginProps, LoginState> {
       .catch(error => authStore.logError(error.message))
   }
 
-  render() {
-    const { errorMsg } = this.props.authStore
-    return (
-      <div>
-        <input
-          type="text"
-          value={this.state.email}
-          onChange={(event: SyntheticInputEvent<EventTarget>) =>
-            this.handleChange(event, 'email')
-          }
-        />
-        <input
-          type="password"
-          value={this.state.pass}
-          onChange={(event: SyntheticInputEvent<EventTarget>) =>
-            this.handleChange(event, 'pass')
-          }
-        />
-        <button type="submit" onClick={this.handleSummit}>
-          {'Submit'}
-        </button>
-        {errorMsg !== '' && <p>{errorMsg}</p>}
-      </div>
-    )
-  }
+  return (
+    <Col md={{ span: 4, offset: 4 }}>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        validationSchema={loginSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group controlId="validationFormik01">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="text"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.email && !errors.email}
+                isInvalid={touched.email && !!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+              {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+            </Form.Group>
+            <Form.Group controlId="validationFormik02">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.password && !errors.password}
+                isInvalid={touched.password && !!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+              {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+            </Form.Group>
+            <SubmitButton type="submit" disabled={!isValid}>
+              Submit form
+            </SubmitButton>
+          </Form>
+        )}
+      </Formik>
+      {props.authStore.errorMsg !== '' && props.authStore.errorMsg}
+    </Col>
+  )
 }
 
 export default compose(

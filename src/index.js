@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'mobx-react'
+import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App'
 import AuthStore from './stores/AuthStore'

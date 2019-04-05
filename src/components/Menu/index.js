@@ -16,20 +16,18 @@ type MenuProps = {
   t: any,
 }
 
-const Menu = (props: MenuProps) => {
-  const { authStore } = props
-  console.log(props);
+const Menu = ({ t, authStore }: MenuProps) => {
   return (
     <Wrapper>
       <When is={authStore.auth}>
         <Link to="/" onClick={authStore.logOut}>
-          LogOut
+          {t('Logout')}
         </Link>
       </When>
       <When is={!authStore.auth}>
-        <Link to="/home">Login</Link>
+        <Link to="/home">{t('Login')}</Link>
       </When>
-      <SelectLang/>
+      <SelectLang />
     </Wrapper>
   )
 }

@@ -1,13 +1,12 @@
 // @flow
 
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
-import DevTools from 'mobx-react-devtools';
+import DevTools from 'mobx-react-devtools'
 
 import routes from './routes'
 import AuthStore from './stores/AuthStore'
-import Loader from './components/Loader'
 import Menu from './components/Menu'
 
 type AppProps = {
@@ -16,14 +15,13 @@ type AppProps = {
 
 class App extends Component<AppProps> {
   render() {
-    const { isLoading } = this.props.authStore
-
-    return isLoading ? <Loader /> : 
-      <Fragment>
-        <DevTools/>
-        <Menu/>
+    return (
+      <>
+        <DevTools />
+        <Menu />
         {routes()}
-      </Fragment>
+      </>
+    )
   }
 }
 

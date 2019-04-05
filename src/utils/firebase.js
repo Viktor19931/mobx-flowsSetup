@@ -20,7 +20,6 @@ export const firebaseAuth = firebase.auth
 
 export const auth = (email: string, pw: string) =>
   firebaseAuth().createUserWithEmailAndPassword(email, pw)
-// .then(saveUser)
 
 export const login = (email: string, pw: string) =>
   firebaseAuth().signInWithEmailAndPassword(email, pw)

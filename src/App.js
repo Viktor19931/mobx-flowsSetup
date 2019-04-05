@@ -8,6 +8,7 @@ import DevTools from 'mobx-react-devtools';
 import routes from './routes'
 import AuthStore from './stores/AuthStore'
 import Loader from './components/Loader'
+import Menu from './components/Menu'
 
 type AppProps = {
   authStore: AuthStore,
@@ -20,6 +21,7 @@ class App extends Component<AppProps> {
     return isLoading ? <Loader /> : 
       <Fragment>
         <DevTools/>
+        <Menu/>
         {routes()}
       </Fragment>
   }

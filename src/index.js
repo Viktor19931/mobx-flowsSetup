@@ -7,6 +7,7 @@ import { Provider } from 'mobx-react'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App'
+import './i18n'
 import AuthStore from './stores/AuthStore'
 import * as serviceWorker from './serviceWorker'
 

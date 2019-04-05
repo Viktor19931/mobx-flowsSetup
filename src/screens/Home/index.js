@@ -1,30 +1,32 @@
 // @flow
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
+import { withTranslation } from 'react-i18next'
 
 import { Title, Container, Description } from './style'
 import AuthStore from './../../stores/AuthStore'
 
 type HomeProps = {
-  title: string,
-  description: string,
-  authStore: AuthStore
+  authStore: AuthStore,
+  t: any,
+  i18n: any,
 }
 
-const Home = ({ title, description, authStore }: HomeProps) => {
+const Home = ({ t, i18n, authStore }: HomeProps) => {
+
   return (
     <Container>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-      <Link to="/" onClick={authStore.logOut}>LogOut</Link>
+      <Title>Home Component</Title>
+      <Description>{t('Welcome to React')}</Description>
+      <Description>{t('test:test')}</Description>
     </Container>
   )
 }
 
 export default compose(
   inject('authStore'),
+  withTranslation(),
   observer
 )(Home)

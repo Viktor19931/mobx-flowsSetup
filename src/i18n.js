@@ -1,3 +1,5 @@
+// @flow
+
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
@@ -37,6 +39,6 @@ i18n
 
 export const language = i18n.language
 
-export const changeLanguage = language => i18n.changeLanguage(language)
+export const changeLanguage = (language:string) => i18n.changeLanguage(language)
 
 export default i18n

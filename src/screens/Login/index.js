@@ -8,25 +8,19 @@ import Col from 'react-bootstrap/Col'
 import { Formik } from 'formik'
 
 import AuthStore from '../../stores/AuthStore'
-import { login } from '../../utils/firebase'
 import { SubmitButton } from './style'
 import { loginSchema } from '../../utils/schemas'
+import Loader from './../../components/Loader'
+import When from '../../components/When'
 
 type LoginProps = {
-  history: any,
   authStore: AuthStore,
 }
 
-const Login = (props: LoginProps) => {
+const Login = ({ authStore: { logIn, isLoading, errorMsg } }: LoginProps) => {
   const handleSubmit = creds => {
-    const { history, authStore } = props
     const { email, password } = creds
-    login(email, password)
-      .then(() => {
-        history.push('/home')
-        authStore.firebaseCheckAuth()
-      })
-      .catch(error => authStore.logError(error.message))
+    logIn(email, password)
   }
 
   return (
@@ -69,13 +63,18 @@ const Login = (props: LoginProps) => {
               <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
               {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
             </Form.Group>
-            <SubmitButton type="submit" disabled={!isValid}>
-              Submit form
-            </SubmitButton>
+            <div style={{ display: 'flex' }}>
+              <SubmitButton type="submit" disabled={!isValid}>
+                Submit form
+              </SubmitButton>
+              <When is={isLoading}>
+                <Loader />
+              </When>
+            </div>
           </Form>
         )}
       </Formik>
-      {props.authStore.errorMsg !== '' && props.authStore.errorMsg}
+      <When is={errorMsg !== ''}>{errorMsg}</When>
     </Col>
   )
 }

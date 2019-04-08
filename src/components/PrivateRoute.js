@@ -18,7 +18,7 @@ const PrivateRoute = ({ component: Component, authStore, ...rest }) => {
     <Route
       {...rest}
       render={props => (
-          authStore.auth === true ? 
+          authStore.auth ? 
             <Component {...props} /> : 
             <Redirect to="/" />)}
     />

@@ -5,12 +5,12 @@ import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 
-import routes from './routes'
+import Routes from './routes'
 import AuthStore from './stores/AuthStore'
 import Menu from './components/Menu'
 
 type AppProps = {
-  authStore: AuthStore,
+  // authStore: AuthStore,
 }
 
 class App extends Component<AppProps> {
@@ -19,13 +19,13 @@ class App extends Component<AppProps> {
       <>
         <DevTools />
         <Menu />
-        {routes()}
+        <Routes />
       </>
     )
   }
 }
 
-export default compose(
-  inject('authStore'),
-  observer
-)(App)
+export default App
+  // inject('authStore'),
+  // observer
+// )(App)

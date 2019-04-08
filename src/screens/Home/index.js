@@ -11,10 +11,9 @@ import AuthStore from './../../stores/AuthStore'
 type HomeProps = {
   authStore: AuthStore,
   t: any,
-  i18n: any,
 }
 
-const Home = ({ t, i18n, authStore }: HomeProps) => {
+const Home = ({ t, authStore }: HomeProps) => {
 
   return (
     <Container>

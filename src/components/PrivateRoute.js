@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
@@ -8,20 +8,16 @@ import { inject, observer } from 'mobx-react'
 import AuthStore from '../stores/AuthStore'
 
 type PrivateRouteProps = {
-  component: Component<any>,
-  rest: any,
-  authStore: AuthStore
+  CustomComponent: any,
+  authStore: AuthStore,
 }
 
-const PrivateRoute = ({ component: Component, authStore, ...rest }) => {
+const PrivateRoute = ({ CustomComponent, authStore: { auth } }: PrivateRouteProps) => {
   return (
-    <Route
-      {...rest}
-      render={props => (
-          authStore.auth ? 
-            <Component {...props} /> : 
-            <Redirect to="/" />)}
-    />
+    <Route render={props => (
+      auth ? 
+      <CustomComponent {...props} /> : 
+      <Redirect to="/" />)} />
   )
 }
 

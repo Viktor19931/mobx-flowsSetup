@@ -5,9 +5,6 @@ import { observable, decorate, action } from 'mobx'
 import { firebaseAuth, logout, login } from '../utils/firebase'
 import { history } from '../index'
 
-const sleep = (time: number): Promise<any> => 
-  new Promise(resolve => setTimeout(resolve, time));
-
 class AuthStore {
   auth: boolean = false
   isLoading: boolean = false
@@ -17,11 +14,14 @@ class AuthStore {
   logIn = (email: string, password: string) => {
       this.isLoading = true 
       login(email, password)
-      .then(() => {
+      .then(async() => {
+        await this.firebaseCheckAuth()
         history.push('/home')
-        this.firebaseCheckAuth()
       })
-      .catch(error => this.logError(error.message))
+      .catch(error => {
+        this.logError(error.message)
+        this.isLoading = false
+      })
   }
 
   firebaseCheckAuth = () => {

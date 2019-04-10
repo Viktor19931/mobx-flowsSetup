@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { createBrowserHistory } from 'history'
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css'
 
 import App from './App'
 import './i18n'

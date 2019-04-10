@@ -14,7 +14,6 @@ type HomeProps = {
 }
 
 const Home = ({ t, authStore }: HomeProps) => {
-
   return (
     <Container>
       <Title>Home Component</Title>

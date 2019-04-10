@@ -1,8 +1,8 @@
 // @flow
 
 import * as firebase from 'firebase/app'
-import "firebase/auth"
-import "firebase/database"
+import 'firebase/auth'
+import 'firebase/database'
 
 const config = {
   apiKey: 'AIzaSyBy_OrlPpC6YkA3YGsnHFDXE3E6r5lAxso',
@@ -24,5 +24,4 @@ export const auth = (email: string, pw: string) =>
 export const login = (email: string, pw: string) =>
   firebaseAuth().signInWithEmailAndPassword(email, pw)
 
-export const logout = () =>
-  firebaseAuth().signOut()
+export const logout = () => firebaseAuth().signOut()

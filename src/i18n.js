@@ -12,15 +12,15 @@ import { translationDE, testDE } from './locales/de'
 const resources = {
   en: {
     translation: translationEN,
-    test: testEN
+    test: testEN,
   },
   ua: {
     translation: translationUA,
-    test: testUA
+    test: testUA,
   },
   de: {
     translation: translationDE,
-    test: testDE
+    test: testDE,
   },
 }
 
@@ -39,6 +39,7 @@ i18n
 
 export const language = i18n.language
 
-export const changeLanguage = (language:string) => i18n.changeLanguage(language)
+export const changeLanguage = (language: string) =>
+  i18n.changeLanguage(language)
 
 export default i18n

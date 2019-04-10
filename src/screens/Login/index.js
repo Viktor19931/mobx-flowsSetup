@@ -17,7 +17,9 @@ type LoginProps = {
   authStore: AuthStore,
 }
 
-const Login = ({ authStore: { logIn, isLoading, errorMsg } }: LoginProps) => {
+const Login = ({
+  authStore: { logIn, isLoading, errorMsg },
+}: LoginProps) => {
   const handleSubmit = creds => {
     const { email, password } = creds
     logIn(email, password)
@@ -33,7 +35,15 @@ const Login = ({ authStore: { logIn, isLoading, errorMsg } }: LoginProps) => {
         validationSchema={loginSchema}
         onSubmit={handleSubmit}
       >
-        {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
+        {({
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          values,
+          touched,
+          isValid,
+          errors,
+        }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group controlId="validationFormik01">
               <Form.Label>Email</Form.Label>
@@ -46,7 +56,9 @@ const Login = ({ authStore: { logIn, isLoading, errorMsg } }: LoginProps) => {
                 isValid={touched.email && !errors.email}
                 isInvalid={touched.email && !!errors.email}
               />
-              <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
               {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
             </Form.Group>
             <Form.Group controlId="validationFormik02">
@@ -60,7 +72,9 @@ const Login = ({ authStore: { logIn, isLoading, errorMsg } }: LoginProps) => {
                 isValid={touched.password && !errors.password}
                 isInvalid={touched.password && !!errors.password}
               />
-              <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
               {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
             </Form.Group>
             <div style={{ display: 'flex' }}>

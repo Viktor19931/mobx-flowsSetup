@@ -10,13 +10,14 @@ const languages = ['en', 'ua', 'de']
 type SelectLangProps = {}
 
 const SelectLang = (props: SelectLangProps) => {
-  const renderOptions = () => languages.map(el => <option key={el}>{el}</option>)
+  const renderOptions = () =>
+    languages.map(el => <option key={el}>{el}</option>)
 
   return (
-    <Form.Control 
-      style={{width: 50}}
-      as="select" 
-      onChange={event => changeLanguage(event.target.value)} 
+    <Form.Control
+      style={{ width: 50 }}
+      as="select"
+      onChange={event => changeLanguage(event.target.value)}
       defaultValue={language}
     >
       {renderOptions()}

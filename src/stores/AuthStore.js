@@ -12,9 +12,9 @@ class AuthStore {
   errorMsg: string = ''
 
   logIn = (email: string, password: string) => {
-      this.isLoading = true 
-      login(email, password)
-      .then(async() => {
+    this.isLoading = true
+    login(email, password)
+      .then(async () => {
         await this.firebaseCheckAuth()
         history.push('/home')
       })
@@ -25,7 +25,7 @@ class AuthStore {
   }
 
   firebaseCheckAuth = () => {
-    firebaseAuth().onAuthStateChanged(async(user) => {
+    firebaseAuth().onAuthStateChanged(async user => {
       if (user) {
         this.auth = true
         this.isLoading = false

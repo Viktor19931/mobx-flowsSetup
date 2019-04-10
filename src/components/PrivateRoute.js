@@ -12,12 +12,16 @@ type PrivateRouteProps = {
   authStore: AuthStore,
 }
 
-const PrivateRoute = ({ CustomComponent, authStore: { auth } }: PrivateRouteProps) => {
+const PrivateRoute = ({
+  CustomComponent,
+  authStore: { auth },
+}: PrivateRouteProps) => {
   return (
-    <Route render={props => (
-      auth ? 
-      <CustomComponent {...props} /> : 
-      <Redirect to="/" />)} />
+    <Route
+      render={props =>
+        auth ? <CustomComponent {...props} /> : <Redirect to="/" />
+      }
+    />
   )
 }
 

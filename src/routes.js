@@ -13,7 +13,7 @@ const routes = (props: routesProps) => {
   return (
     <Switch>
       <Route exact path="/" component={Login} />
-      <PrivateRoute path="/home" CustomComponent={Home}/> />
+      <PrivateRoute path="/home" CustomComponent={Home} /> />
     </Switch>
   )
 }
